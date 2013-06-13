@@ -1,4 +1,6 @@
-require "tor-control/version"
+require 'tor-control/version'
+require 'socket'
+require 'logger'
 
 module TorControl
   @host = 'localhost'
@@ -32,11 +34,11 @@ module TorControl
 
     def connect
       return @connection if @connection
-      begin
-        @connection = TCPSocket.new(@host, @control_port)
-      rescue
-        logger.error "TorControl: Failed to connection to tor service"
-      end
+      # begin
+      @connection = TCPSocket.new(@host, @control_port)
+      # rescue
+        #logger.error "TorControl: Failed to connection to tor service"
+      # end
     end
 
     def signal_new_identity
@@ -56,13 +58,9 @@ module TorControl
     end
 
     def close
-      begin
-        check_connection
-        send_line "QUIT"
-        @connection.close
-      rescue
-        logger.error "TorControl: control port closed too soon!"
-      end
+      check_connection
+      send_line "QUIT"
+      not @connection = false
     end
 
     private
