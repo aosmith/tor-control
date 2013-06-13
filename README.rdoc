@@ -1,0 +1,26 @@
+= tor-control
+
+Brought to you by Mantra[http://meetmantra.com].
+
+http://fury-badge.herokuapp.com/rb/tor-control.png
+
+{<img src="https://travis-ci.org/aosmith/tor-control.png?branch=master" />}[https://travis-ci.org/aosmith/tor-control?branch=master]
+
+== Usage
+
+Mantra-tor depends upon a running tor instance.
+
+A Singleton variable is used to interact with the tor instance:
+
+  TorControl.password = "password"
+  TorControl.host = "localhost"
+  TorControl.port = 9051
+  TorControl.connect
+  TorControl.authenticate
+  TorControl.new_identity
+  TorControl.close
+
+I use socksify[https://rubygems.org/gems/socksify] to proxy my tcp connections:
+
+      TCPSocket::socks_server = "127.0.0.1"
+      TCPSocket::socks_port = 9050
