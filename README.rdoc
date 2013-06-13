@@ -1,7 +1,5 @@
 = tor-control
 
-Brought to you by Mantra[http://meetmantra.com].
-
 http://fury-badge.herokuapp.com/rb/tor-control.png
 
 {<img src="https://travis-ci.org/aosmith/tor-control.png?branch=master" />}[https://travis-ci.org/aosmith/tor-control?branch=master]
