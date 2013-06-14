@@ -34,11 +34,11 @@ module TorControl
 
     def connect
       return @connection if @connection
-      # begin
+      begin
       @connection = TCPSocket.new(@host, @control_port)
-      # rescue
-        #logger.error "TorControl: Failed to connection to tor service"
-      # end
+      rescue
+        logger.error "TorControl: Failed to connection to tor service"
+      end
     end
 
     def signal_new_identity
@@ -60,7 +60,8 @@ module TorControl
     def close
       check_connection
       send_line "QUIT"
-      not @connection = false
+      @connection = false
+      return ! @connection
     end
 
     private
